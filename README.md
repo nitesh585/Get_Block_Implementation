@@ -38,23 +38,23 @@ It takes only one parameter
 - Open terminal/Command prompt and change directory to the folder of the
 project ( BufferCache ).
 - *Linux – Type<br>
-make
+```make```
 - *Windows – Check out GnuWin's make, which provides a native port for
 Windows (without requiring a full runtime environment like Cygwin).
-- Type – make clean<br>
+- Type – ```make clean```<br>
 for removing compiled files of header files.
-- run - ./bufferCache
+- run - ```./bufferCache```
 -----------------------------------------------------------------------------
 - This command invokes main.cpp file and create a shell of bufferCache.
-- Add block using addblk command e.g addblk 25 1. where addblk is
+- Add block using addblk command e.g ```addblk 25 1```. where addblk is
 command, 25 is block number and 1 is status ( unlocked ).
-- After this command you can check by using - echo hashqueue and
-echo freelist command that block is added to the both hashqueue and
+- After this command you can check by using - ```echo hashqueue``` and
+```echo freelist``` command that block is added to the both hashqueue and
 freelist.
 - Use getblk command for requesting a block. This create new thread
 which runs independently in the background until block is allocated.
-e.g getblk 48 . getblk is command and 48 is block number.
-- run echo processlist command to check that process is added to the
+e.g ```getblk 48``` . getblk is command and 48 is block number.
+- run ```echo processlist``` command to check that process is added to the
 processlist and it displays the process ID provided by the OS.
 - If requested block is unlocked and present in freelist then it is allocated to
 that process after that particular thread process terminates and removed
@@ -63,4 +63,4 @@ from the processlist.
 asynchronous write has been done and after that block is available to
 allocate.
 - use brelse command to release the particular block.
-- use help command for further help.
+- use ```help``` command for further help.
