@@ -35,7 +35,7 @@ It takes only one parameter
 - block number is any integer value
 
 ## Running the Program :
-- Open terminal/Command promt and change directory to the folder of the
+- Open terminal/Command prompt and change directory to the folder of the
 project ( BufferCache ).
 - *Linux – Type<br>
 make
