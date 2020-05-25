@@ -1,7 +1,5 @@
 #pragma once
 #include<string>
-#include<unordered_map>
-#include<queue>
 #include<thread>
 
 using namespace std;
@@ -11,7 +9,7 @@ using namespace std;
 void echo(string arg);
 void displayPL();
 void getblk(int blk_num);
-void brelse(string blknum);
+void brelse(int blknum);
 void addblk(string blk_num, string status);
 void help();
 void setAlive(thread::id id);

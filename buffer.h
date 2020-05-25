@@ -30,6 +30,8 @@ class bufferHeader{
     bufferHeader(){}
 };
 
+void init();
+
 
 //---------------HashQueue functions---------
 void addToHQ(int blk_num,int dNum,int status);
@@ -39,6 +41,7 @@ void setStatus(int blk_num, int sts);
 void displayHQ();
 void deleteFromHQ(int blk_num);
 bool emptyHQ();
+
 
 //---------------Freelist functions---------
 void addToHeadFL(int blk_num,int dNum,int status);

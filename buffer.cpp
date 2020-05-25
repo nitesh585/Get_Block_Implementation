@@ -1,27 +1,69 @@
 #include"buffer.h"
 #include<iostream>
 #include<algorithm>
+#define siz 16
 
 // HashQueue
 std::unordered_map <int,std::vector<bufferHeader>> HashQueue;
 //vector of bufferheader in freeList
 std::vector<bufferHeader> freeList;
+std::unordered_map<int,bufferHeader> map;
+
+
+// initialization function
+void init(){
+    bufferHeader* tmp =  new bufferHeader(-1,1,1);
+    for(int i=0; i<4; i++){
+        for(int j=0; j<4; j++){
+            HashQueue[i].emplace_back(*tmp);
+        }
+    }
+
+    for(int i=0; i<16; i++) freeList.emplace_back(*tmp);
+}
 
 
 //---------------------HASHQUEUE METHODS---------//
 
 //Print all the blocks present in hashqueue
 void displayHQ(){
-    cout<<"---------------HASH_QUEUE---------------\n";
-    for(int i=0;i<4;i++){
-        vector<bufferHeader> tmp = HashQueue[i];
-        cout<<i;
-        for (auto i = tmp.begin(); i!=tmp.end(); i++){
-            std::cout<<"-> |"<<i->blk_num<<"|";
+    cout<<"\n---------HASH_QUEUE---------\n\n";
+        bool check =false;
+        for(int i=0; i<4; i++){
+            if(HashQueue[i].begin()->blk_num!=-1){
+                check=true;
+                break;
+            }
         }
-        std::cout<<"\n";
-    }
+        if(check){
+            for(int i=0;i<4;i++){
+                vector<bufferHeader> tmp = HashQueue[i];
+                cout<<i<<"->";
+                auto it = tmp.begin();
+                for (int j=0; j< tmp.size() ; j++){
+                    if(it->blk_num!=-1)
+                        std::cout<<"|"<<it->blk_num<<"|->";
+                    it++;
+                }
+                std::cout<<"\n";
+            }
+        }else{
+            for(int i=0;i<4;i++){
+                vector<bufferHeader> tmp = HashQueue[i];
+                cout<<i<<"->";
+                auto it = tmp.begin();
+                for (int j=0; j< tmp.size() ; j++){
+                    std::cout<<" |"<<it->blk_num<<"|->";
+                    it++;
+                }
+                std::cout<<"\n";
+            }
+        }
+
+    std::cout<<"\n";
+
 }
+
 
 // Add block to hash queue
 void addToHQ(int blk_num,int dNum,int status){
@@ -34,6 +76,7 @@ void addToHQ(int blk_num,int dNum,int status){
     }
 }
 
+
 // delete block from hash queue
 void deleteFromHQ(int blk_num){
     int hash = (blk_num+1)%4; 
@@ -43,8 +86,7 @@ void deleteFromHQ(int blk_num){
             HashQueue[hash].erase(i);
             return;
         }
-    }
-    cout<<"NOT FOUND !!\n"; 
+    } 
 }
 
 
@@ -60,6 +102,7 @@ bool searchHQ(int blk_num){
     }
     return false;
 }
+
 
 // check hash queue is empty or not
 bool emptyHQ(){
@@ -93,11 +136,13 @@ bufferHeader deleteToheadFL(){
     return tmp;
 }
 
+
 // get the head content of freelist
 bufferHeader getHeadToFL(){
     // if freelist is not empty then return head block otherwise, return dummy block
     return !freeList.empty() ? freeList[0] : *new bufferHeader(-1,-1,-1);
 }
+
 
 // delete from any position in freelist
 bufferHeader deleteAnyPositionFL(int blk_num){
@@ -112,6 +157,7 @@ bufferHeader deleteAnyPositionFL(int blk_num){
     return tmp;
 }
 
+
 // search block in freelist
 bool searchFL(int blk_num){
     for(auto i=freeList.begin() ; i!=freeList.end() ; i++){
@@ -122,14 +168,18 @@ bool searchFL(int blk_num){
     return false;
 }
 
+
 // display the block of freelist
 void displayFL(){
-    cout<<"\n---------------FREE_LIST---------------\n";
-    for(auto i=freeList.begin() ; i!=freeList.end() ; i++ ){
-            std::cout<<"-> |"<<i->blk_num<<"| ";
+    cout<<"\n-----------FREE_LIST-----------\n";
+    auto it=freeList.begin();
+    for(int j=0; j<16; j++){
+        std::cout<<"->|"<<it->blk_num<<"|";
+        it++;
     }
-    std::cout<<"\n";
+    std::cout<<"\n\n";
 }
+ 
 
 // check whether freelist is empty or not
 bool emptyFL(){
@@ -137,10 +187,8 @@ bool emptyFL(){
 }
 
 
-
 // get status of the block
 int getStatus(int blk_num){
-
     for(bufferHeader bh : HashQueue[(blk_num+1)%4]){
         if(bh.blk_num==blk_num){
             return bh.status;
@@ -151,10 +199,11 @@ int getStatus(int blk_num){
 
 // set status of the block
 void setStatus(int blk_num, int sts){
-
     for(bufferHeader bh : HashQueue[(blk_num+1)%4]){
         if(bh.blk_num==blk_num){
-            bh.status = sts;
+            deleteFromHQ(blk_num);
+            addToHQ(blk_num,1,sts);
+            break;
         }
     }
 }

@@ -3,9 +3,7 @@
 void help(){
     printf("\nCommands : \n\
         - echo      Printing HashQueue, FreeList and ProcessList\n\
-        - addblk    Adding block to the hashqueue\n\
-        - getblk    Requesting for buffer block\n\
-        - brelse    Releasing the buffer block\n\
+        - process   Creating multiple processes\n\
         - clear     Clear the screen\n\
         - help      Open the help section\n\
         ");
@@ -17,18 +15,9 @@ void help(){
         - processlist   for printing ProcessList\n\
         ");
 
-    printf("\naddblk - ADD BLOCK :\n\
-        It takes two parameters ( block number and status of the block )\n\
-        - block number   is any integer value\n\
-        - status         1 - unlocked block / 3 - block marked as delayed write\n\
-    ");
-    
-    printf("\ngetblk - GET BLOCK :\n\
-        It takes only one parameter\n\
-        - block number   is any integer value\n\
-        ");
-
-    printf("\nbrelse - BLOCK RELEASE :\n\
-        It takes only one parameter\n\
-        - block number is any integer value\n\n");    
+    printf("\nprocess - Create multiple processes :\n\
+        It takes any number of parameter\n\
+        - filename -  that consist the requests for blocks.\n\
+        e.g process input1.txt input2.txt \
+        ");   
 }
