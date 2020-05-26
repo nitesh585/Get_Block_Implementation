@@ -9,9 +9,7 @@ Command Line Linux Shell for simulation of allocating disk blocks function of Op
 
 ## Commands :
 - echo------Printing HashQueue, FreeList and ProcessList
-- addblk----Adding block to the hashqueue
-- getblk----Requesting for buffer block
-- brelse----Releasing the allocated buffer block
+- process----Creating process
 - clear-----Clear the screen
 - help------Open the help section
 
@@ -21,18 +19,10 @@ It take only one parameter.
 - freelist for printing FreeList
 - processlist for printing ProcessList
 
-### addblk - ADD BLOCK :
-It takes two parameters ( block number and status of the block )
-- block number is any integer value
-- status 1 - unlocked block / 3 - block marked as delayed write
+### process - Create processes :
+It takes any number of parameter as a file name
+- for each file name a new process is being created
 
-### getblk - GET BLOCK :
-It takes only one parameter
-- block number is any integer value
-
-### brelse - BLOCK RELEASE :
-It takes only one parameter
-- block number is any integer value
 
 ## Running the Program :
 - Open terminal/Command prompt and change directory to the folder of the
