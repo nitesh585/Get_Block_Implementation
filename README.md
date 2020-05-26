@@ -36,14 +36,12 @@ for removing compiled files of header files.
 - run - ```./bufferCache```
 -----------------------------------------------------------------------------
 - This command invokes main.cpp file and create a shell of bufferCache.
-- Add block using addblk command e.g ```addblk 25 1```. where addblk is
-command, 25 is block number and 1 is status ( unlocked ).
-- After this command you can check by using - ```echo hashqueue``` and
-```echo freelist``` command that block is added to the both hashqueue and
-freelist.
-- Use getblk command for requesting a block. This create new thread
+- `main.cpp` initializes the buffers in the freelist.
+- You can check by using - ```echo hashqueue``` and ```echo freelist``` command
+that block is added to the both hashqueue and freelist.
+- Use `process` command for creating new processes. This creates threads as the number of filename given
 which runs independently in the background until block is allocated.
-e.g ```getblk 48``` . getblk is command and 48 is block number.
+e.g ```process input1.txt input2.txt input3.txt``` for each filename a new thread is being created.
 - run ```echo processlist``` command to check that process is added to the
 processlist and it displays the process ID provided by the OS.
 - If requested block is unlocked and present in freelist then it is allocated to
@@ -52,5 +50,4 @@ from the processlist.
 - But if block is marked as delayed write, then a 20 seconds simulated
 asynchronous write has been done and after that block is available to
 allocate.
-- use brelse command to release the particular block.
 - use ```help``` command for further help.
