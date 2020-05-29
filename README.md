@@ -3,15 +3,15 @@ Command Line Linux Shell for simulation of allocating disk blocks function of Op
 
 
 ## Description :
-- Language – C++
-- Approach – Multithreading
-- IDE – Visual Studio Code
+- Language - C++
+- Approach - Multithreading
+- IDE      - Visual Studio Code
 
 ## Commands :
-- echo------Printing HashQueue, FreeList and ProcessList
+- echo-------Printing HashQueue, FreeList and ProcessList
 - process----Creating process
-- clear-----Clear the screen
-- help------Open the help section
+- clear------Clear the screen
+- help-------Open the help section
 
 ### echo :
 It take only one parameter.
